@@ -3,6 +3,10 @@ import numpy as np
 class logistic(object):
     def __init__(self):
         self.W = None
+    
+    def sigmod(self,X):
+        return 1/(1+np.exp(-X))
+     
     def train(self,X,y,learn_rate = 0.01,num_iters = 5000):
         num_train,num_feature = X.shape
         #init the weight
@@ -36,8 +40,6 @@ class logistic(object):
     def output(self,X):
         g = np.dot(X,self.W)
         return self.sigmod(g)
-    def sigmod(self,X):
-        return 1/(1+np.exp(-X))
     
     def predict(self,X_test):
         h = self.output(X_test)
